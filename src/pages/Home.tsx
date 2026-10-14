@@ -205,50 +205,42 @@ export default function Home() {
   const deviceSelected = form.emulateDevice !== "";
 
   return (
-    <div className="scanline min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-border/70 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-primary/50 bg-primary/10">
-              <Camera className="h-4.5 w-4.5 text-primary" />
-            </div>
-            <div>
-              <h1 className="font-mono text-sm font-bold tracking-[0.25em] text-foreground glow-text">
-                CAPTURE<span className="text-primary">//</span>WEB
-              </h1>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                headless chromium · capture-website engine
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Badge
-              variant="outline"
-              className="hidden gap-1.5 border-border/70 font-mono text-[10px] sm:flex"
-            >
-              <span
-                className={`h-1.5 w-1.5 rounded-full ${engineOnline ? "bg-primary shadow-[0_0_6px_hsl(84_81%_44%)]" : "bg-destructive"}`}
-              />
-              {engineOnline ? "ENGINE ONLINE" : "ENGINE ?"}
-            </Badge>
-            <Button asChild variant="ghost" size="sm" className="gap-2 font-mono text-xs">
-              <a
-                href="https://github.com/sindresorhus/capture-website"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Github className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">sindresorhus/capture-website</span>
-              </a>
-            </Button>
-          </div>
+    <div className="capture-shell min-h-screen">
+      <a className="skip-link" href="#main">Skip to capture tool</a>
+      <header className="wl-header">
+        <a className="wl-brand" href="https://williamlodge.com/" aria-label="William Lodge homepage">
+          <span className="wl-mark"><Camera className="h-4 w-4" aria-hidden="true" /></span>
+          <span>WILLIAM LODGE <span className="wl-brand-slash">/</span> TOOLS</span>
+        </a>
+        <nav className="wl-nav" aria-label="William Lodge">
+          <a href="https://williamlodge.com/builds.html">Builds</a>
+          <a href="https://williamlodge.com/contact.html">Contact</a>
+        </nav>
+        <div className="wl-header-right">
+          <Badge variant="outline" className="wl-status gap-1.5 font-mono text-[10px]">
+            <span className={`h-1.5 w-1.5 rounded-full ${engineOnline ? "bg-primary" : "bg-destructive"}`} />
+            {engineOnline ? "SYSTEM LIVE" : "SYSTEM CHECKING"}
+          </Badge>
+          <a className="wl-header-cta" href="https://williamlodge.com/contact.html">Work with William ↗</a>
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-[1600px] gap-4 p-4 lg:grid-cols-[440px_1fr]">
+      <section className="wl-hero" aria-labelledby="app-title">
+        <div>
+          <p className="wl-kicker"><span>WL — 01</span> / WEB TOOL</p>
+          <h1 id="app-title">Capture the web.<br /><span>Keep the proof.</span></h1>
+          <p className="wl-lede">Turn any page into a clean screenshot or PDF. Choose the viewport, capture the full page, and download the result in seconds.</p>
+        </div>
+        <div className="wl-hero-aside" aria-label="Supported output formats">
+          <span>OUTPUT FORMATS</span>
+          <strong>PNG <i>·</i> JPEG <i>·</i> WEBP <i>·</i> PDF</strong>
+          <small>Built and operated by William Lodge</small>
+        </div>
+      </section>
+
+      <main id="main" className="wl-workspace mx-auto grid max-w-[1320px] gap-5 px-5 pb-16 lg:grid-cols-[400px_minmax(0,1fr)]">
         {/* ===================== CONTROL CONSOLE ===================== */}
-        <section className="space-y-4 rounded-lg border border-border/70 bg-card/70 p-4 backdrop-blur">
+        <section className="wl-panel space-y-4 p-5">
           <SectionTitle index="01" title="Target" />
           <Field label="Input type">
             <div className="grid grid-cols-2 gap-2">
@@ -753,6 +745,10 @@ export default function Home() {
           </p>
         </section>
       </main>
+      <footer className="wl-footer">
+        <span>© 2026 William Lodge · Useful systems, built end to end.</span>
+        <a href="https://github.com/williamlodge/capture-web" target="_blank" rel="noreferrer"><Github className="h-3.5 w-3.5" /> View source ↗</a>
+      </footer>
     </div>
   );
 }
